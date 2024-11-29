@@ -1,2 +1,2 @@
 # BlueMonday
-I depressi
+I depressi dal giorno 0
