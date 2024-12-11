@@ -8,5 +8,4 @@ class Partecipante:
         return f"{self.nome} {self.cognome}"
 
     def __eq__ (self, other): #mi definisce l'uguaglianza tra oggetti
-        if not isinstance(other, Partecipante):
-            return self.nome == other.nome and self.cognome == other.cognome
+        return self.nome == other.nome and self.cognome == other.cognome

@@ -1,14 +1,7 @@
 # Importo il modulo random per poter usare sample per poter randomizzare le posizioni dell'array delle assegnazioni
 import random
+from Partecipante import Partecipante
 # Creo la classe partecipante inizializzandola con init (andrà poi importata al momento della parte finale del progetto)
-class Partecipante:
-    def __init__(self, Nome, Cognome):
-        self.Nome = Nome
-        self.Cognome = Cognome
-
-    # Con il metodo def str comando come mostrare la classe
-    def __str__(self):
-        return f"{self.Nome} {self.Cognome}"
 
 # Creo la classe gioco e la inizializzo con def init
 class Gioco:
@@ -28,29 +21,34 @@ class Gioco:
 
     # Creo il metodo assegna per andare ad assegnare i giocatori della prima lista con i giocatori della seconda
     def assegna(self):
-        # Controllo se il numero di giocatori sono pari
-        if len(self.giocatori)%2 == 0:
-            # Creo una variabile flag che serve per tenere traccia se le liste hanno i nomi nelle posizioni diverse
-            diversi = False
-            while not diversi:
-                # Assegno in i nomi in posizioni a caso con sample. Gli argomenti si sample sono l'array da randomizzare e la lunghezza
-                self.assegnazioni = random.sample(self.giocatori, len(self.giocatori))
-                # Ciclo for per controllare ogni posizione 
-                for i in range(len(self.giocatori)):
-                    # Faccio un confronto tra i nomi delle liste se sono diversi
-                    if self.giocatori[0] == self.assegnazioni[0]:
-                        # Se i nomi della stessa posizione delle 2 liste sono uguali allora il ciclo for si interrompe e rifà la randomizzazione
-                        diversi = False
-                        break
-                    else:
-                        # Se i nomi sono diversi, il flag 'diversi' diventa True e il ciclo continua per controllare gli altri nomi 
-                        diversi = True
-                if diversi:
-                    # Se tutti i nomi sono diversi, allora il ciclo finisce
-                    print('Assegnazione Eseguita')
+        # Controllo se la lista dei giocatori non sia vuota
+        if len(self.giocatori) > 0:
+            # Controllo se il numero di giocatori sono pari
+            if len(self.giocatori)%2 == 0:
+                print('Assegnazione in corso...')
+                # Creo una variabile flag che serve per tenere traccia se le liste hanno i nomi nelle posizioni diverse
+                diversi = False
+                while not diversi:
+                    # Assegno in i nomi in posizioni a caso con sample. Gli argomenti si sample sono l'array da randomizzare e la lunghezza
+                    self.assegnazioni = random.sample(self.giocatori, len(self.giocatori))
+                    # Ciclo for per controllare ogni posizione 
+                    for i in range(len(self.giocatori)):
+                        # Faccio un confronto tra i nomi delle liste se sono diversi
+                        if self.giocatori[0] == self.assegnazioni[0]:
+                            # Se i nomi della stessa posizione delle 2 liste sono uguali allora il ciclo for si interrompe e rifà la randomizzazione
+                            diversi = False
+                            break
+                        else:
+                            # Se i nomi sono diversi, il flag 'diversi' diventa True e il ciclo continua per controllare gli altri nomi 
+                            diversi = True
+                    if diversi:
+                        # Se tutti i nomi sono diversi, allora il ciclo finisce
+                        print('Assegnazione Eseguita')
+            else:
+                # Se i giocatori sono dispari si esce fuori dalla funzione e si richiede di assegnare
+                print('I giocatori sono dispari, aggiungi un nuovo giocatore e riprova')
         else:
-            # Se i giocatori sono dispari si esce fuori dalla funzione e si richiede di assegnare
-            print('I giocatori sono dispari, aggiungi un nuovo giocatore e riprova')
+            print('Non ci sono giocatori')
     
 # Creo la variabile giocatore e le assegno la classe Gioco
 gioco = Gioco()
@@ -84,7 +82,6 @@ while richiesta != "fine":
         # Se l'utente ha inserito il nome e il cognome corretti, richiamo il metodo inserisci della classe Gioco e aggiungo nome e cognome del partecipante come unico elemento all'interno della lista self.giocatori
         gioco.inserisci(Nome, Cognome)
     elif richiesta == '2':
-        print('Assegnazione in corso...')
         gioco.assegna()
 
     # Aggiungo un messaggio di errore se l'utente quando gli viene chiesta un'opzione o di terminare il programma sceglie un valore non previsto e faccio ripartire il ciclo richiedendo all'utente l'opzione che desidera scegliere
@@ -102,5 +99,5 @@ for g in gioco.giocatori:
 
 print('Mentre la lista random è:')
 
-for g in gioco.giocatori:
+for g in gioco.assegnazioni:
     print(g)
