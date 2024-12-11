@@ -11,4 +11,3 @@ class Partecipante:
         if not isinstance(other, Partecipante):
             return False
             return self.nome == other.nome and self.cognome == other.cognome
-        
