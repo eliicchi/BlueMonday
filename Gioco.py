@@ -1,7 +1,22 @@
+#Inizializza il giocatore con nome e cognome. con creazione classe Partecipante
+class Partecipante:
+   #È il costruttore della classe e serve per inizializzare gli attributi dell'oggetto
+    def __init__(self, nome, cognome):
+        #Si mettono due parametri: nome e cognome, che vengono poi assegnati 
+        #agli attributi dell'oggetto tramite self.nome e self.cognome.
+        self.nome = nome
+        self.cognome = cognome
+  
+    #Mi permette di definire come un oggetto della classe Partecipante, mi 
+    #restituisce una stringa formattata con il nome e il cognome del partecipante
+    def __str__(self):
+        return f"{self.nome} {self.cognome}"
 
-# Importo il modulo random per poter usare sample per poter randomizzare le posizioni dell'array delle assegnazioni
-import random
-from Partecipante import Partecipante
+    #Mi definisce l'uguaglianza tra oggetti metodo == per gli oggetti della 
+    #classe Partecipante, mentre l'other è l'altro oggetto che viene confrontato con l'oggetto corrente
+    def __eq__ (self, other): 
+        if not isinstance(other, Partecipante):
+            return self.nome == other.nome and self.cognome == other.cognome
 
 # Creo la classe gioco e la inizializzo con def init
 class Gioco:
@@ -9,6 +24,9 @@ class Gioco:
 
         # Creo la lista per contenere i giocatori che partecipano al gioco
         self.giocatori = []
+
+        # Creo un dizionario per tenere poi traccia dei nomi duplicati
+        self.contatore_nomi = {}
 
         # Creo una seconda lista per contenere un ordine randomizzato dei partecipanti che verranno poi assegnati
         self.assegnazioni = []
@@ -27,31 +45,47 @@ class Gioco:
             if richiesta == "1":
 
                 # Chiedo all'utente il nome del partecipante e uso la funzione .strip
-                Nome = input("Inserisci il nome del partecipante: ").strip()
+                nome = input("Inserisci il nome del partecipante: ").strip()
 
                 # Creo un ciclo while che continua se l'utente inserisce numeri al posto di lettere e richiede all'utente il nome del partecipante
                 # tramita la funzione all and .isalpha controllo che l'input dell'utente non contenga lettere, in caso contrario stampo un messaggio di errore e il ciclo si ripete
                 # Con la funzione .isspace permetto che il Nome possa essere composto da più parole
-                while not all(char.isalpha() or char.isspace() for char in Nome):
+                while not all(char.isalpha() or char.isspace() for char in nome):
                     print("Errore: devi digitare solo lettere. Riprova.")
 
                     # Richiedo dunque all'utente il nome del partecipante
-                    Nome = input("Inserisci il nome del partecipante: ").strip()
+                    nome = input("Inserisci il nome del partecipante: ").strip()
 
                 # Chiedo all'utente il nome del partecipante e uso la funzione .strip
-                Cognome = input("Inserisci il cognome del partecipante: ").strip()
+                cognome = input("Inserisci il cognome del partecipante: ").strip()
 
                 # tramita la funzione all and .isalpha controllo che l'input dell'utente non contenga lettere, in caso contrario stampo un messaggio di errore e il ciclo si ripete
                 # Con la funzione .isspace permetto che il Cognome possa essere composto da più parole
-                while not all(char.isalpha() or char.isspace() for char in Cognome):
+                while not all(char.isalpha() or char.isspace() for char in cognome):
                     print("Errore: devi digitare solo lettere. Riprova.")
-                    Cognome = input("Inserisci il cognome del partecipante: ").strip()
+                    cognome = input("Inserisci il cognome del partecipante: ").strip()
+
+                # Creo una tupla che rappresenta una chiave univoca per nome e cognome
+                chiave = (nome, cognome)
+
+                # Controllo se esiste già la combinazione nome e cognome
+                # Se la combinazione esiste già nel dizionario allora...
+                if chiave in self.contatore_nomi:
+                    # Aggiungo un numero progressivo al partecipante
+                    self.contatore_nomi[chiave] += 1
+                    cognome += f"_{self.contatore_nomi[chiave]}"
+                    print(f"Sei il giocatore {nome} {cognome}")
+                else:
+                    # Se la combinazione nome e cognome non esiste la aggiungo al dizionario per eventuali controlli su un partecipante doppio
+                    self.contatore_nomi[chiave] = 1
 
                 # creo la variabile partecipante a cui assegno la classe partecipante
-                partecipante = Partecipante(Nome, Cognome)
+                partecipante = Partecipante(nome, cognome)
                 # aggiungo la variabile partecipante alla lista dei giocatori
                 self.giocatori.append(partecipante)
                 print(f"Aggiunto: {partecipante}")
+
+            
 
             # Aggiungo un messaggio di errore se l'utente quando gli viene chiesta un'opzione o di terminare il programma sceglie un valore non previsto e faccio ripartire il ciclo richiedendo all'utente l'opzione che desidera scegliere
             else:
