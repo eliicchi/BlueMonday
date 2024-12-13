@@ -50,7 +50,7 @@ class Gioco:
                 # Creo un ciclo while che continua se l'utente inserisce numeri al posto di lettere e richiede all'utente il nome del partecipante
                 # tramita la funzione all and .isalpha controllo che l'input dell'utente non contenga lettere, in caso contrario stampo un messaggio di errore e il ciclo si ripete
                 # Con la funzione .isspace permetto che il Nome possa essere composto da più parole
-                while not all(char.isalpha() or char.isspace() for char in nome):
+                while not all(char.isalpha() or char.isspace() for char in nome) or nome == "":
                     print("Errore: devi digitare solo lettere. Riprova.")
 
                     # Richiedo dunque all'utente il nome del partecipante
@@ -61,7 +61,7 @@ class Gioco:
 
                 # tramita la funzione all and .isalpha controllo che l'input dell'utente non contenga lettere, in caso contrario stampo un messaggio di errore e il ciclo si ripete
                 # Con la funzione .isspace permetto che il Cognome possa essere composto da più parole
-                while not all(char.isalpha() or char.isspace() for char in cognome):
+                while not all(char.isalpha() or char.isspace() for char in cognome) or nome == "":
                     print("Errore: devi digitare solo lettere. Riprova.")
                     cognome = input("Inserisci il cognome del partecipante: ").strip()
 
