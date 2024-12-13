@@ -75,23 +75,23 @@ class Gioco:
      #       if len(self.giocatori)%2 == 0:
      #           print('Assegnazione in corso...')
                 # Creo una variabile flag che serve per tenere traccia se le liste hanno i nomi nelle posizioni diverse
-            diversi = False
-            while not diversi:
+        diversi = False
+        while not diversi:
                 # Assegno in i nomi in posizioni a caso con sample. Gli argomenti si sample sono l'array da randomizzare e la lunghezza
-                self.assegnazioni = random.sample(self.giocatori, len(self.giocatori))
+            self.assegnazioni = random.sample(self.giocatori, len(self.giocatori))
                 # Ciclo for per controllare ogni posizione 
-                for i in range(len(self.giocatori)):
+            for i in range(len(self.giocatori)):
                         # Faccio un confronto tra i nomi delle liste se sono diversi
-                    if self.giocatori[i] == self.assegnazioni[i]:
+                if self.giocatori[i] == self.assegnazioni[i]:
                             # Se i nomi della stessa posizione delle 2 liste sono uguali allora il ciclo for si interrompe e rifà la randomizzazione
-                        diversi = False
-                        break
-                    else:
+                    diversi = False
+                    break
+                else:
                             # Se i nomi sono diversi, il flag 'diversi' diventa True e il ciclo continua per controllare gli altri nomi 
-                        diversi = True
-                if diversi:
+                    diversi = True
+            if diversi:
                         # Se tutti i nomi sono diversi, allora il ciclo finisce
-                    print('Assegnazione Eseguita')
+                print('Assegnazione Eseguita')
 
     #creo una funzione per stampare le assegnazioni
     def stampaAssegnazioni(self):

@@ -15,5 +15,4 @@ class Partecipante:
     #Mi definisce l'uguaglianza tra oggetti metodo == per gli oggetti della 
     #classe Partecipante, mentre l'other è l'altro oggetto che viene confrontato con l'oggetto corrente
     def __eq__ (self, other): 
-        if not isinstance(other, Partecipante):
-            return self.nome == other.nome and self.cognome == other.cognome
+        return self.nome == other.nome and self.cognome == other.cognome
