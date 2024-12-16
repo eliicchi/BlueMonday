@@ -1,3 +1,4 @@
+# Prova
 # Importo il modulo random per poter usare sample per poter randomizzare le posizioni dell'array delle assegnazioni
 import random
 from Partecipante import Partecipante
