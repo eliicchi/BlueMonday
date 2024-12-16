@@ -27,8 +27,8 @@ class Gioco:
         while richiesta != "fine":
             
             # Chiedo all'utente il nome del partecipante e uso la funzione .strip
-            Nome = input("Inserisci il nome del partecipante o fine per terminare: ").strip()
-            if Nome=="fine":
+            nome = input("Inserisci il nome del partecipante o fine per terminare: ").strip()
+            if nome=="fine":
                 if len(self.giocatori)>1:
                     break
                 else:
@@ -37,33 +37,42 @@ class Gioco:
             # Creo un ciclo while che continua se l'utente inserisce numeri al posto di lettere e richiede all'utente il nome del partecipante
             # tramita la funzione all and .isalpha controllo che l'input dell'utente non contenga lettere, in caso contrario stampo un messaggio di errore e il ciclo si ripete
            # Con la funzione .isspace permetto che il Nome possa essere composto da più parole
-            while not all(char.isalpha() or char.isspace() for char in Nome):
+            while not all(char.isalpha() or char.isspace() for char in nome) or nome == "":
                 print("Errore: devi digitare solo lettere. Riprova.")
 
                     # Richiedo dunque all'utente il nome del partecipante
-                Nome = input("Inserisci il nome del partecipante: ").strip()
+                nome = input("Inserisci il nome del partecipante: ").strip()
 
                 # Chiedo all'utente il nome del partecipante e uso la funzione .strip
-            Cognome = input("Inserisci il cognome del partecipante: ").strip()
+            cognome = input("Inserisci il cognome del partecipante: ").strip()
 
                 # tramita la funzione all and .isalpha controllo che l'input dell'utente non contenga lettere, in caso contrario stampo un messaggio di errore e il ciclo si ripete
                 # Con la funzione .isspace permetto che il Cognome possa essere composto da più parole
-            while not all(char.isalpha() or char.isspace() for char in Cognome):
+            while not all(char.isalpha() or char.isspace() for char in cognome) or cognome == "":
                 print("Errore: devi digitare solo lettere. Riprova.")
-                Cognome = input("Inserisci il cognome del partecipante: ").strip()
+                cognome = input("Inserisci il cognome del partecipante: ").strip()
+
+ # Creo una tupla che rappresenta una chiave univoca per nome e cognome
+            chiave = (nome, cognome)
+
+                # Controllo se esiste già la combinazione nome e cognome
+                # Se la combinazione esiste già nel dizionario allora...
+            if chiave in self.contatore_nomi:
+                 # Aggiungo un numero progressivo al partecipante
+                self.contatore_nomi[chiave] += 1
+                cognome += f"_{self.contatore_nomi[chiave]}"
+                print(f"Sei il giocatore {nome} {cognome}")
+            else:
+                # Se la combinazione nome e cognome non esiste la aggiungo al dizionario per eventuali controlli su un partecipante doppio
+                self.contatore_nomi[chiave] = 1
 
                 # creo la variabile partecipante a cui assegno la classe partecipante
-            partecipante = Partecipante(Nome, Cognome)
+            partecipante = Partecipante(nome, cognome)
                 # aggiungo la variabile partecipante alla lista dei giocatori
             self.giocatori.append(partecipante)
             print("La lista dei nuovi giocatori è:")
             for g in self.giocatori:
                 print(g)
-
-        # Se tutto il ciclo prima creato non riscontra errori, il programma stampa la lista definitiva di tutti i giocatori scelti
-
-
-     
 
 # Creo il metodo assegna per andare ad assegnare i giocatori della prima lista con i giocatori della seconda
     def assegna(self):
@@ -97,3 +106,6 @@ class Gioco:
 
 
                 print(f"Il giocatore {self.giocatori[j]} gli è stato assegnato l'amico {self.assegnazioni[j]}")
+
+gioco=Gioco()
+gioco.inserisci()
