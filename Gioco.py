@@ -18,26 +18,23 @@ class Gioco:
 
     # Creo il metodo inserisci per inserire i partecipanti del gioco
     def inserisci(self):
-
-        # Creo la variabile richiesta che sarà l'input a cui chiedere l'utente una scelta fra quelle disponibili, in questo caso ho inserito solo la scelta di aggiungere un nuovo partecipante o terminare il programma
-        # Con la funzione .strip tolgo eventuali spazi bianchi prima o dopo la stringa inserita. Con la funzione .lower rendo case insensitive l'input, in modo che digitando fine anche a caratteri diversi l'input venga preso
-        #richiesta = input("Scrivi il nome del primo partecipante o 'fine' per terminare: ").strip().lower()
-        richiesta=""
-        # Creo un ciclo while che continua finchè l'utente non digita fine
-        while richiesta != "fine":
+        #creo una variabile richiesta
+        richiesta=" "
+        # Creo un ciclo while che continua finchè l'utente non schiaccia invio
+        while richiesta != "":
             
             # Chiedo all'utente il nome del partecipante e uso la funzione .strip
-            nome = input("Inserisci il nome del partecipante o fine per terminare: ").strip()
-            if nome=="fine":
+            nome = input("Inserisci il nome del partecipante o schiaccia invio per terminare: ").strip()
+            if nome=="":
                 if len(self.giocatori)>1:
                     break
                 else:
-                    print("Il numero dei giocatori è dispari ")
+                    print("Il numero dei giocatori non è sufficiente ")
                     continue #per continuare col prossimo ciclo di iterazione
             # Creo un ciclo while che continua se l'utente inserisce numeri al posto di lettere e richiede all'utente il nome del partecipante
             # tramita la funzione all and .isalpha controllo che l'input dell'utente non contenga lettere, in caso contrario stampo un messaggio di errore e il ciclo si ripete
            # Con la funzione .isspace permetto che il Nome possa essere composto da più parole
-            while not all(char.isalpha() or char.isspace() for char in nome) or nome == "":
+            while not all(char.isalpha() or char.isspace() for char in nome):
                 print("Errore: devi digitare solo lettere. Riprova.")
 
                     # Richiedo dunque all'utente il nome del partecipante
@@ -48,7 +45,7 @@ class Gioco:
 
                 # tramita la funzione all and .isalpha controllo che l'input dell'utente non contenga lettere, in caso contrario stampo un messaggio di errore e il ciclo si ripete
                 # Con la funzione .isspace permetto che il Cognome possa essere composto da più parole
-            while not all(char.isalpha() or char.isspace() for char in cognome) or cognome == "":
+            while not all(char.isalpha() or char.isspace() for char in cognome):
                 print("Errore: devi digitare solo lettere. Riprova.")
                 cognome = input("Inserisci il cognome del partecipante: ").strip()
 
@@ -103,6 +100,4 @@ class Gioco:
             #ciclo for per stampare ogni giocatore il suo amico segreto assegnato
             for j in range(len(self.assegnazioni)):
                 #stampo ogni giocatore della lista self.giocatore e self.assegnazione
-
-
                 print(f"Il giocatore {self.giocatori[j]} gli è stato assegnato l'amico {self.assegnazioni[j]}")
