@@ -125,9 +125,3 @@ class Gioco:
             for j in range(len(self.assegnazioni)):
                 #stampo ogni giocatore della lista self.giocatore e self.assegnazione
                 print(f"Il giocatore {self.giocatori[j]} gli è stato assegnato l'amico {self.assegnazioni[j]}")
-
-# Creo la variabile giocatore e le assegno la classe Gioco
-giocatore = Gioco()
-
-# Invoco il metodo inserisci della classe Gioco
-giocatore.inserisci()
