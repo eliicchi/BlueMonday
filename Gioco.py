@@ -21,11 +21,11 @@ class Gioco:
         #richiesta = input("Scrivi il nome del primo partecipante o 'fine' per terminare: ").strip().lower()
         richiesta=""
         # Creo un ciclo while che continua finchè l'utente non digita fine
-        while richiesta != "fine":
+        while richiesta != "":
             
             # Chiedo all'utente il nome del partecipante e uso la funzione .strip
-            Nome = input("Inserisci il nome del partecipante o fine per terminare: ").strip()
-            if Nome=="fine":
+            Nome = input("Inserisci il nome del partecipante o premi invio per terminare: ").strip()
+            if Nome=="":
                 if len(self.giocatori)>1:
                     break
                 else:
