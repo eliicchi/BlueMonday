@@ -1,4 +1,4 @@
-
+# Prova
 # Importo il modulo random per poter usare sample per poter randomizzare le posizioni dell'array delle assegnazioni
 import random
 from Partecipante import Partecipante
@@ -9,6 +9,9 @@ class Gioco:
 
         # Creo la lista per contenere i giocatori che partecipano al gioco
         self.giocatori = []
+
+        # Creo un dizionario per tenere poi traccia dei nomi duplicati
+        self.contatore_nomi = {}
 
         # Creo una seconda lista per contenere un ordine randomizzato dei partecipanti che verranno poi assegnati
         self.assegnazioni = []
@@ -57,23 +60,14 @@ class Gioco:
             for g in self.giocatori:
                 print(g)
 
-            # Riscrivo l'input di richiesta per chiedere all'utente che opzione desidera scegliere (aggiungere partecipante o terminare) per far ripartire il ciclo in caso di errori dell'utente
-            #richiesta = input("Digita '1' per aggiungere un nuovo partecipante o 'fine' per terminare: ").strip().lower()
-
         # Se tutto il ciclo prima creato non riscontra errori, il programma stampa la lista definitiva di tutti i giocatori scelti
 
 
-        # utilizzo un ciclo for che itera su tutti gli elementi della lista giocatori, attributo dell'oggetto giocatore prima creato, e istanza della classe gioco
-        # la variabile g rappresenta un singolo oggetto Partecipante della lista
-
+     
 
 # Creo il metodo assegna per andare ad assegnare i giocatori della prima lista con i giocatori della seconda
     def assegna(self):
-        # Controllo se la lista dei giocatori non sia vuota
-    #    if len(self.giocatori) > 0:
-            # Controllo se il numero di giocatori sono pari
-     #       if len(self.giocatori)%2 == 0:
-     #           print('Assegnazione in corso...')
+   
                 # Creo una variabile flag che serve per tenere traccia se le liste hanno i nomi nelle posizioni diverse
         diversi = False
         while not diversi:
@@ -100,11 +94,6 @@ class Gioco:
             #ciclo for per stampare ogni giocatore il suo amico segreto assegnato
             for j in range(len(self.assegnazioni)):
                 #stampo ogni giocatore della lista self.giocatore e self.assegnazione
+
+
                 print(f"Il giocatore {self.giocatori[j]} gli è stato assegnato l'amico {self.assegnazioni[j]}")
-
-
-# Creo la variabile giocatore e le assegno la classe Gioco
-#giocatore = Gioco()
-
-# Invoco il metodo inserisci della classe Gioco
-#giocatore.inserisci()

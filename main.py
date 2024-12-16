@@ -1,6 +1,7 @@
 from Gioco import Gioco
 def main():         #definizione del main
-    print("yahoooooo")
+
+    print("Benvenuto nel gioco dell'amico segreto")
     # Creo la variabile giocatore e le assegno la classe Gioco
     gioco = Gioco()
 
