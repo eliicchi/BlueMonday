@@ -1,4 +1,4 @@
-#Inizializza il giocatore con nome e cognome. con creazione classe Partecipante
+#Inizializza il giocatore con nome e cognome con creazione classe Partecipante
 class Partecipante:
    #È il costruttore della classe e serve per inizializzare gli attributi dell'oggetto
     def __init__(self, nome, cognome):
