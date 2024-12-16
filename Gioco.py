@@ -122,7 +122,7 @@ class Gioco:
         #controllo la lista assegnazioni non sia vuota
         if len(self.assegnazioni)>0:
             #ciclo for per stampare ogni giocatore il suo amico segreto assegnato
-            for j in rang(len(self.assegnazioni)):
+            for j in range(len(self.assegnazioni)):
                 #stampo ogni giocatore della lista self.giocatore e self.assegnazione
                 print(f"Il giocatore {self.giocatori[j]} gli è stato assegnato l'amico {self.assegnazioni[j]}")
 
