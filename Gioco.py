@@ -106,6 +106,3 @@ class Gioco:
 
 
                 print(f"Il giocatore {self.giocatori[j]} gli è stato assegnato l'amico {self.assegnazioni[j]}")
-
-gioco=Gioco()
-gioco.inserisci()
